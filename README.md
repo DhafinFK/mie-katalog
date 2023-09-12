@@ -1,6 +1,6 @@
 TAUTAN ADAPTABLE SAYA TIDAK ADA
 -penjelasan-
-Saya sebelumnya telah berhasil deploy di adaptable itulah mengapa saya belum mengisi form sampai malam hari pukul 10.56 tanggal 12 September 2023. Namun pada tepat waktu itu dan tanggal itu akun adaptable saya di disable. Saya sekarang tidak bisa mengisi form untuk mahasiswa yang tidak bisa deploy di adaptable. Karena sebelum tenggat waktu selesai saya tidak ada keperluan untuk mengisi. Namun, sekarang ada tetapi lagi-lagi form tersebut sudah ditutup. Jadi semoga readme ini bisa menimbulkan sedikit rasa pengertian bukan hanya kepada saya tetapi untuk seluruh mahasiswa yang sedang mengalami permasalahan yang serupa.
+akun saya di adaptable di disable
 -akhir penjelasan-
 
 
