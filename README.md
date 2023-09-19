@@ -83,7 +83,12 @@ PEMBUATAN SEMUA OBJECTIVE TUGAS 2:
 
 AKSES URL DENGAN POSTMAN:
 1. /xml/
+![xml](https://github.com/DhafinFK/mie-katalog/blob/main/gambar_untuk_readme/xml_noid.png)
 2. /json/
+![JSON](https://github.com/DhafinFK/mie-katalog/blob/main/gambar_untuk_readme/json_noid.png)
 3. /xml/'id'
+![xml_id](https://github.com/DhafinFK/mie-katalog/blob/main/gambar_untuk_readme/xml_id.png)
 4. /json/'id'
+![JSON_id](https://github.com/DhafinFK/mie-katalog/blob/main/gambar_untuk_readme/json_id.png)
 5. / (html)
+![HTML](https://github.com/DhafinFK/mie-katalog/blob/main/gambar_untuk_readme/html.png)
