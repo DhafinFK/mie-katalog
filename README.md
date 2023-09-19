@@ -51,3 +51,39 @@ Definisi dari ketiganya bisa dimulai dari 2 huruf pertama yaitu M dan V. M = Mod
 Perbedaan utama terdapat pada huruf-huruf terakhir setelah MV dimana C = controller yang mengatur alur kontrol dalam aplikasi, menerima input dari puengguna, memprosesnya, dan mengirim perintah ke model atau view yang sesuai. T = Template yang menggambarkan data dari model menjadi tampilan yang konkret bagian ini intinya menformat tampilan. VM = ViewModel sebuah komponen tambahan yang memisahkan logika tampilan dari data. Viewmodel mengubah data dari model menjadi bentuk yang dapat ditampilkan oleh view
 
 selain dari tiga huruf tersebut MVC dan MVT cenderung lebih tradisional dibandingkan MVVM yang lebih modern dan merupakan evolusi lebih baru.
+
+PERBEDAAN POST & GET:
+
+POST dan GET keduanya merupakan http request method namun terdapat beberapa perbedaan dimana:
+1. Tujuan utama dari get method merupakan request data dari server sedangkan post method digunakan untuk mengirim data ke server untuk di proses
+2. Pengiriman data pada method get melalui append di kalimat url sedangkan post method tidak append data yang ingin di kirim di kalimat url dan terdapat di request body nya. Sehingga dapat mengirim lebih banyak data dan lebih cocok untuk mengirim data yang ingin dirahasiakan karena tidak muncul di URL
+3. Karena get method menambahkan pengiriman data ke kalimat url maka dianggap tidak se aman post method karena post method tidak menunjukkan data transmission dalam url nya
+
+PERBEDAAN XML, JSON, dan HTML:
+
+1. JSON dan XML lah format file utama yang digunakan untuk pertukaran dan pengaturan presentasi struktur data
+2. JSON lebih sering digunakan untuk API untuk pertukaran data antara client dan server
+3. XML dan HTML menggunakan tag untuk pengkategorian data, bedanya XML lebih untuk pertukaran data sedangkan HTML lebih sering digunakan untuk membuat tampilan di website
+
+ALASAN JSON SERING DIGUNAKAN DALAM PERTUKARAN DATA ANTARA APLIKASI WEB MODERN:
+
+1. JSON ringan dan human readable serta machine readable. Serta syntax nya mirip dengan javascript
+2. JSON sudah natively supported dalam banyak browsing engine sehingga penggunaannya luas
+3. JSON memang di design untuk menjadi sangat efisien untuk transfer data dalam web
+4. Compatible dengan javascript yang telah digunakan sangat luas
+5. Sudah sangat terkenal untuk membuat API yang memungkinkan komunikasi antara frontend dan backend.
+6. dn masih banyak lagi
+
+PEMBUATAN SEMUA OBJECTIVE TUGAS 2:
+1. saya menggunakan fitur form yang disediakan oleh django framework dengan membuat file baru bernama forms.py. Didalam forms.py saya membuat class form untuk model Indomie dan menuliskan semua fields yang akan dijadikan editable input. Kemudian saya melakukan url routing dari domain/mie-katalog/ ke create-mie jadi domain/mie-katalog/create-mie. url tersebut mengarah ke create mie view yang berfungsi untuk menerima request method POST dari form.html yang menggunakan django logic untuk menampilkan semua field input. Apabila method == POST dan form yang di post valid maka form tersebut akan di save sebagai instancce baru dari Indomie model dan dimasukkan ke database. Apabila tidak memenuhi syarat method == POST dan form tidak valid maka akan kembali ke page form.html sampai form yang dibuat benar atau user memencet ancor "back" yang mengarahkan ke katalog utama. Apabila berhasil, maka user akan di redirect kembali ke main katalog menggunakan django urls httpresponseredirect.
+
+2. Untuk membuat 5 fungsi views. pertama saya membuat 5 url routing dengan salah satu url routing ke main katalog yang merupakan display data mengguanakan html. dalam main katalog saya menggunakan django logic pada html template untuk for loop semua context 'mies' yang di passing dari katalog view. Setelah itu saya membuat masing-masing view untuk show json, show sml, show xml by id, show json by id. Cara kerja show json dan show xml mirip dengan mengambil semua object indomie dari database dan di query ke dalam variabel data yang kemudian menjadi bagian context dari masing-view. Perbedaan dari show xml dan show json adalah penggunaan serializers pada django dimana serializers melakukan data serialization sehingga menjadi format json atau xml sesuai view yang diakses. Sedangkan untuk show xml by id dan show json by id sama saja melakukan data serialization pada data yang sudah di assign sebelumnya, namun saat ini data bukan semua instance dari object indomie melainkan satu object saja yang di filter berdsarkan primary key. argumen primary key yang di passing ke function show by id didapatkan dari url config dimana terdapat /<int:id>/ potongan url tersebut akan mem passing id yang diisi menjadi argumen pk=id di show by id views.
+
+3. Untuk menjawab pertanyaan-pertanyaan yang perlu dijawab di readme.md ini, Saya pertama menanyakan chatgpt untuk referensi materi dan kemudian jawaban dari chatgpt juga. Kemudian saya crosscheck jawaban dari chatgpt dan referensi-referensi yang terpercaya sehingga saya yakin dengan jawaban yang akan saya tulis.
+
+AKSES URL DENGAN POSTMAN:
+1. /xml/
+2. /json/
+3. /xml/'id'
+4. /json/'id'
+5. / (html)

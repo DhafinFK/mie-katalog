@@ -1,142 +1,59 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Indomie Katalog</title>
+{% extends 'base.html' %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;600&family=Nunito:wght@200&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="{% static 'katalog.css' %}">
+{% block content %}
+<h1 class="title">- INDOMIE KATALOG -</h1>
+<h4 class="sub-title">est. 2023</h4>
 
-    <style>
-      .title {
-        font-family: Heebo;
-        font-size: 40px;
-        text-align: center;
-        margin-bottom: 0px;
-        margin-top: 15px;
-      }
+<div class="center-page">
+  <p class="about-us-title">
+    About Us
+  </p>
 
-      .sub-title {
-        margin-top: 9px;
-        text-align: center;
-        font-size: 20px;
-        margin-bottom: 0px;
-        color: rgb(59, 58, 58);
-      }
+  <p class="about-us-par">
+    Menurut chat gpt Indomie adalah salah satu merek mi instan yang sangat populer di Indonesia 
+    dan mendapatkan pengakuan internasional. Mi instan ini merupakan produk yang sangat disukai 
+    oleh masyarakat Indonesia dan bahkan telah memikat hati orang-orang di seluruh dunia. Apa yang 
+    membuat Indomie begitu istimewa adalah rasa gurih dan tekstur mi yang kenyal, disertai dengan 
+    beragam varian rasa yang memikat lidah.
+      <br> <br>
+    Namun menurut kami tidak seperti itu. Menurut kami indomie merupakan tulang punggung dari cita rasa
+    bentuk nyata dari kata-kata murah, lezat, dan mengenyangkan. Oleh karena itu kami membuat website
+    katalog ini untuk memberikat tribut kepada indomie
+  </p>
+</div>
 
-      .center-page {
-        margin: auto;
-        width: 75%;
-        text-align: justify;
-        margin-top: 20px;
-      }
+<div class="center-page">
+  <p class="about-us-title">
+    Katalog (<a href="{% url 'mie:create-mie' %}">Tambahkan Mie</a>)
+  </p>
 
-      .about-us-title {
-        font-family: Arial;
-        font-weight: bold;
-        font-size: 15px;
-      }
-
-      .about-us-par {
-        font-family: Arial;
-        font-size: 15px;
-      }
-
-      .filter {
-        font-family: Arial;
-        font-size: 15px;
-        margin-top: 0px;
-        display: inline-block
-      }
+  <p>Anda menyimpan: <strong>{{ total }} Indomie dalam katalog</strong></p>
 
 
-      .mie-name {
-        text-align: left;
-        font-weight: bold;
-      }
-
-      .mie-grid {
-        display: grid;
-        grid-template-columns: 200px 200px 200px 200px;
-        column-gap: 70px;
-      }
-
-      .mie-element {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        margin-bottom: 20px;
-      }
-
-      .mie-price {
-        margin-top: auto;
-      }
-
-      .mie-stock {
-        margin-left: auto;
-      }
-
-      .mie-description {
-        align-self: flex-start;
-      }
-    </style>
-
-  </head>
-  <body>
-    <h1 class="title">- INDOMIE KATALOG -</h1>
-    <h4 class="sub-title">est. 2023</h4>
-
-    <div class="center-page">
-      <p class="about-us-title">
-        About Us
-      </p>
-
-      <p class="about-us-par">
-        Menurut chat gpt Indomie adalah salah satu merek mi instan yang sangat populer di Indonesia 
-        dan mendapatkan pengakuan internasional. Mi instan ini merupakan produk yang sangat disukai 
-        oleh masyarakat Indonesia dan bahkan telah memikat hati orang-orang di seluruh dunia. Apa yang 
-        membuat Indomie begitu istimewa adalah rasa gurih dan tekstur mi yang kenyal, disertai dengan 
-        beragam varian rasa yang memikat lidah.
-         <br> <br>
-        Namun menurut kami tidak seperti itu. Menurut kami indomie merupakan tulang punggung dari cita rasa
-        bentuk nyata dari kata-kata murah, lezat, dan mengenyangkan. Oleh karena itu kami membuat website
-        katalog ini untuk memberikat tribut kepada indomie
-      </p>
-    </div>
-
-    <div class="center-page">
-      <p class="about-us-title">
-        Katalog
-      </p>
-
-      <form method="post" action="">
-        <p class="filter">
-          Filter by:
-        </p>
-        {% csrf_token %}
-        <select name="filter_category">
-          <option value="" disabled selected>Pilih kategori</option>
-          <option value="MG">Indomie Goreng</option>
-          <option value="MK">Indomie Kuah</option>
-          <option value="HU">Harga Tertinggi</option>
-          <option value="HL">Harga Terendah</option>
-        </select>
-        <input type="submit" value="filter">
-      </form>
-      <p>Filter berdasarkan: {{ filtered_by }}</p>
-      <div class="mie-grid">
-        {% for mie in mies %}
-          <div class="mie-element">
-            <p class="mie-name">{{ mie }}</p>
-            <p class="mie-description">{{ mie.description }}</p>
-            <p class="mie-price">Harga/bungkus: {{ mie.price }}</p>
-            <p class="mie-stock">current stock: {{ mie.amount }}</p>
-          </div>
-        {% endfor %}
+  <form method="post" action="">
+    <p class="filter">
+      Filter by:
+    </p>
+    {% csrf_token %}
+    <select name="filter_category">
+      <option value="" disabled selected>Pilih kategori</option>
+      <option value="MG">Indomie Goreng</option>
+      <option value="MK">Indomie Kuah</option>
+      <option value="HU">Harga Tertinggi</option>
+      <option value="HL">Harga Terendah</option>
+    </select>
+    <input type="submit" value="filter">
+  </form>
+  <p>Filter berdasarkan: {{ filtered_by }}</p>
+  <div class="mie-grid">
+    {% for mie in mies %}
+      <div class="mie-element">
+        <p class="mie-name">{{ mie }}</p>
+        <p class="mie-description">{{ mie.description }}</p>
+        <p class="mie-price">Harga/bungkus: {{ mie.price }}</p>
+        <p class="mie-stock">current stock: {{ mie.amount }}</p>
       </div>
-    </div>
-  </body>
-</html>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}
