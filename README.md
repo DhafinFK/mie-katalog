@@ -3,8 +3,7 @@ TAUTAN ADAPTABLE SAYA TIDAK ADA
 akun saya di adaptable di disable
 -akhir penjelasan-
 
-
-Checklist dan penjelasan:
+--- tugas 2 ---
 
 Checklist Item 1: Membuat project django baru
 
@@ -52,6 +51,8 @@ Perbedaan utama terdapat pada huruf-huruf terakhir setelah MV dimana C = control
 
 selain dari tiga huruf tersebut MVC dan MVT cenderung lebih tradisional dibandingkan MVVM yang lebih modern dan merupakan evolusi lebih baru.
 
+--- tugas 3 ---
+
 PERBEDAAN POST & GET:
 
 POST dan GET keduanya merupakan http request method namun terdapat beberapa perbedaan dimana:
@@ -92,3 +93,44 @@ AKSES URL DENGAN POSTMAN:
 ![JSON_id](https://github.com/DhafinFK/mie-katalog/blob/main/gambar_untuk_readme/json_id.png)
 5. / (html)
 ![HTML](https://github.com/DhafinFK/mie-katalog/blob/main/gambar_untuk_readme/html.png)
+
+--- tugas 4 ---
+
+1. UserCreationForm dari django merupakan built in form yang membuat sebuah user tanpa previlage apapun selama diberikan username dan password. secara default usercreationform memiliki tiga field input yaitu username, password1, dan password2. password ada dua agar user bisa konfirmasi ulang password yang telah dimasukkan ke dalam input fields. UserCreationForm merupakan child class dari forms.ModelForm yang dimana modelnya adalah user. karena UserCreationForm merupakan child dari modelform maka form ini bisa dicek valid atau tidak. Hasil cek validasi akan menyimpan cleaned data yang lagi-lagi bisa diakses berdasarkan key yang sesuai.
+    
+    Beberapa keuntungan dari UserCreationForm adalah:
+    1. Sangat sederhana untuk diimplementasikan karena kode-kode sudah dibuat oleh django dan hanya perlu disesuaikan dengan view yang dibuat
+    2. Sudah terdapat built-in validations untuk input field. jadi pengguna tidak perlu membuat function/method tambahan untuk memeriksa kebenaran atau kelengkapan dari form tersebut.
+    3. Sudah handle password checking.
+
+    Beberapa Kekurangan dari UserCreationForm adalah:
+    1. Customization yang terbatas karena pada akhirnya kita menggunakan sesuatu yang sudah disediakan oleh django.
+    2. Tidak menyediakan email confirmation atau bahkan email input
+    3. Tidak ideal untuk form pembuatan user yang lebih advance yang membutuhkan data-data lain karen UserCreationForm menggunakan username-password fields. Bila diperlukan input untuk pembuatan user yang lebih lengkap maka perlu customization atau membuat form tersendiri.
+
+2. Authentication: merupakan proses validasi atau authentication apakah user tertentu sudah terdaftar didalam, biasanya digunakan untuk login. Authorization: pemberian previlage-previlage atau assign role tertentu untuk user tertentu. Kedua proses tersebut penting agar data-data bisa di assign ke pemiliknya masing-masing dan setiap user memiliki batasan. Tidak sembarang user bisa mengakses semua fitur atau data yang tersedia dalam website. Untuk membatasi kebebasan tersebut adalah dengan authentication dan authorization. Untuk bagian authorization lebih khususnya, diperlukan karena setiap pengguna bisa saja memiliki peran yang berbeda-beda dan tidak semua peran memiliki kebebasan akses yang sama.
+
+3. Cookies dalam konteks web development merupakan potongan kode kecil yang disimpan di client-side yang digunakan untuk menyimpan data-data yang terkait dengan session pengguna. Django sendiri menggunakan cookies untuk mengelola data sesi pengguna. informasi-informasi penting terkait login session user akan disimpan adalam cookie oleh django. Tentunya data yang disimpan sudah melalui proses enkripsi oleh django sehingga informasi tersebut aman.
+
+4. secara default penggunaan cookies aman selama diimplementasikan dengan benar karena berbagai security measures yang sudah dilengkapi dengan sistem cookies termasuk django. Namun, cookies tetap memiliki resiko keamanan dimana pada akhirnya data yang disimpan dalam cookies mungkin saja data krusial atau data yang penting. Jika implementasi cookies yang digunakan tidak memiliki security measures yang baik cookies dapat menjadi sasaran serangan man-in-the-middle untuk intercept data yang dikirimkan data melalui jaringan. selain itu cookies dapat menjadi resiko keamanan bagi orang-orang yang tidak ingin data pribadinya tersimpan atau tersebar sama sekali. Terakhir cookie bisa saja dicuri dengan cookie theft. Lagi-lagi resiko tersebut semakin besar apabila implementasi cookie sistem yang digunakan tidak secure atau security measures nya kurang optimal.
+
+5. tahapan melakukan checklist
+checklist item 1:
+Saya mengimplementasikan fungsi registrasi, login, dan logout dengan menggunakan function based views dan belum menggunakan class based views atau form-form yang sudah disediakan oleh django.
+
+- Untuk login saya membuat fbv login yang menerima request.method yaitu 'POST'. bila dari request method tersebut diambil key username dan password dan dimasukkan ke dalam variabel masing-masing untuk di authenticate. hasil authentication dimasukan ke dalam variabel user. Apabila authentication berhasil maka akan dilakukan function login yang disediakan oleh django untuk variabel user tadi. Jika berhasil akan memberikan url route menuju katalog utama dan mengatur key 'last_login' sebagai datetime.now() atau sekarang kemudian cookie dioper ke dalam komputer karena cookie cara kerjanya seperti dictionary. Namun, apabila user gagal authentication nya maka akan render page login yang sama dengan memberikan message-message yang di display di page. Login page menggunakan html table yang menjabarkan login form yang dibuat dari python. Saya membuat url pattern login di url localhost agar langsung bisa login. dan apabila django masih menyimpan login session dari user sebelumnya maka akan langsung redirect ke page utama katalog.
+
+- Untuk registrasi saya membuat function based views kembali yang menerima request method dan menggunakan template form dari python juga. form yang digunakan menggunakan form built in dari django yaitu UserCreationForm yang dimasukkan ke dalam context apabila request method bukan post. Namun apabila request method nya post maka request.POST akan dijadikan parameter untuk user creaton form untuk mengambil value2 dari input/field yang disediakan dalam form. Kemudian form tersebut dicek apakah sudah valid (berarti sudah mengisi semua input field dengan sesuai). saya menambahkan fitur dimana bila telah registrasi langsung login dengan akun yang baru saja di registrasi. karena form sudah dilakukan method .is_valid() maka sekarang data dari form sudah dirapihkan dalam cleaned data dan bisa diambil id 'username' dan 'password1' untuk dimasukkan kedalam variabel-variabel yang sesuai. setelah menyesuaikan variabel maka tahapan berikutnya adalah login yang sama seperti tahapan login pada fbv login view. Untuk user interface yang digunakan untuk registrasi mengextend base.html dan menggunakan html table untuk merapihkan posisi.
+
+- Untuk logout saya membuat fbv logout yang menyimpan user yang saat ini logged in dan melakukan built in function dari django logout(). setelah logout, user akan langsung redirect ke login page. Untuk logout view tidak memerlukan html file karena hanya menjalankan function logout dan tidek perlu menampilkan user interface.
+
+checklist item 2 & 3:
+- membuat field baru di model indomie dengan menambahkan foreignkey yang terhubung dengan seorang user. Foreignkey membuat hubungan antara satu model dengan model yang lain disini seorang user bisa terhubung dengan beberapa indomie. (foreignkey merupakan many-to-one relationship)
+- saat di makemigrations terpaksa semua data yang saya buat langsung dihubungkan ke superuser
+- karena sekarang bisa membuat user dengan registrasi maka saya membuat dua akun yang sudah saya cantumkan nama dan password dari kedua dummy account.
+- setelah membuat kedua dummy account. Saya login ke masing-masing account dan membuat item item atau mie yang sudah dibuat sehingga langsung terhubung dengan user yang sedang log in. di main katalog sudah diatur dimana user hanya bisa melihat indomie yang telah ditambahkan oleh dirinya.
+
+checklist item 4:
+- dengan menggunakan .set_cookie untuk mengatur key dalam cookie dengan value yang sesuai.
+- cookie bertingkah seperti dictionary dalam python.
+- karena sudah memberikan key dan value dalam cookie maka kedua key dan value yang ada di dalam cookie bisa digunakan oleh view-view lain. seperti pada main katalog dimana cookie menampilkan detail terakhir login seorang user. selama dimasukkan ke dalam context maka bisa di akses di html file menggunakan django logic.

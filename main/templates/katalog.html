@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h4 class="sub-title">Hello {{user.username}}</h4>
 <h1 class="title">- INDOMIE KATALOG -</h1>
 <h4 class="sub-title">est. 2023</h4>
+
+<a href="{% url 'logout' %}">Logout</a>
+<p>login terakhir: {{ last_login }}</p>
 
 <div class="center-page">
   <p class="about-us-title">
@@ -10,12 +14,12 @@
   </p>
 
   <p class="about-us-par">
-    Menurut chat gpt Indomie adalah salah satu merek mi instan yang sangat populer di Indonesia 
-    dan mendapatkan pengakuan internasional. Mi instan ini merupakan produk yang sangat disukai 
-    oleh masyarakat Indonesia dan bahkan telah memikat hati orang-orang di seluruh dunia. Apa yang 
-    membuat Indomie begitu istimewa adalah rasa gurih dan tekstur mi yang kenyal, disertai dengan 
+    Menurut chat gpt Indomie adalah salah satu merek mi instan yang sangat populer di Indonesia
+    dan mendapatkan pengakuan internasional. Mi instan ini merupakan produk yang sangat disukai
+    oleh masyarakat Indonesia dan bahkan telah memikat hati orang-orang di seluruh dunia. Apa yang
+    membuat Indomie begitu istimewa adalah rasa gurih dan tekstur mi yang kenyal, disertai dengan
     beragam varian rasa yang memikat lidah.
-      <br> <br>
+    <br> <br>
     Namun menurut kami tidak seperti itu. Menurut kami indomie merupakan tulang punggung dari cita rasa
     bentuk nyata dari kata-kata murah, lezat, dan mengenyangkan. Oleh karena itu kami membuat website
     katalog ini untuk memberikat tribut kepada indomie
@@ -47,12 +51,12 @@
   <p>Filter berdasarkan: {{ filtered_by }}</p>
   <div class="mie-grid">
     {% for mie in mies %}
-      <div class="mie-element">
-        <p class="mie-name">{{ mie }}</p>
-        <p class="mie-description">{{ mie.description }}</p>
-        <p class="mie-price">Harga/bungkus: {{ mie.price }}</p>
-        <p class="mie-stock">current stock: {{ mie.amount }}</p>
-      </div>
+    <div class="mie-element">
+      <p class="mie-name">{{ mie }}</p>
+      <p class="mie-description">{{ mie.description }}</p>
+      <p class="mie-price">Harga/bungkus: {{ mie.price }}</p>
+      <p class="mie-stock">current stock: {{ mie.amount }}</p>
+    </div>
     {% endfor %}
   </div>
 </div>
