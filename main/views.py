@@ -19,12 +19,18 @@ from .forms import IndomieForm
 
 @login_required(login_url='login')
 def show_katalog(request):
+
+    last_login = 'No cookies here'
+
+    if 'last_login' in request.COOKIES:
+        last_login = request.COOKIES['last_login']
+
     context = {
         'mies': Indomie.objects.filter(user=request.user),
         'filtered_by': "",
         "total": Indomie.objects.filter(user=request.user).count(),
         'user': request.user,
-        'last_login': request.COOKIES['last_login'],
+        'last_login': last_login,
     }
 
     if request.method == 'POST':
@@ -67,7 +73,7 @@ def create_Indomie(request):
         'form': form,
     }
 
-    return render(request, "create_mie.html", context)
+    return render(request, "mie_form.html", context)
 
 
 def register(request):

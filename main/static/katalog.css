@@ -69,3 +69,7 @@
 .mie-description {
   align-self: flex-start;
 }
+
+p {
+  font-family: Roboto;
+}

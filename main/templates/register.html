@@ -5,29 +5,46 @@
 {% endblock meta %}
 
 {% block content %}
-<div class="register">
+<main class="form-container">
 
-  <h1>Register</h1>
+  <div class="form">
+    <h1>Register</h1>
 
-  <form method="POST">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input type="submit" value="Register" /></td>
-      </tr>
-    </table>
-  </form>
+    <form class="actual-form-register" method="POST">
+      {% csrf_token %}
+      <div class="uname">
+        <p class="desc">Username: </p>
+        {{ form.username }}
+      </div>
 
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+      <div class="pass">
+        <p class="desc">Password: </p>
+        {{ form.password1 }}
+      </div>
 
-  Already have an account yet? <a href="{% url 'login' %}">Login</a>
-</div>
+      <div class="pass">
+        <p class="desc">Confirm Password: </p>
+        {{ form.password2 }}
+      </div>
+
+      <input class="btn-submit" type="submit" value="Register">
+    </form>
+
+    <div class="messages">
+      {% if messages %}
+      {% for message in messages %}
+      {{ message }}<br>
+      {% endfor %}
+      {% endif %}
+    </div>
+
+
+    <div class="reg-log">
+      Don't have an account yet? <a href="{% url 'login' %}">Login</a>
+    </div>
+  </div>
+
+
+</main>
+
 {% endblock content %}

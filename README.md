@@ -134,3 +134,42 @@ checklist item 4:
 - dengan menggunakan .set_cookie untuk mengatur key dalam cookie dengan value yang sesuai.
 - cookie bertingkah seperti dictionary dalam python.
 - karena sudah memberikan key dan value dalam cookie maka kedua key dan value yang ada di dalam cookie bisa digunakan oleh view-view lain. seperti pada main katalog dimana cookie menampilkan detail terakhir login seorang user. selama dimasukkan ke dalam context maka bisa di akses di html file menggunakan django logic.
+
+
+--- tugas 5 ---
+
+1. element selector digunakan untuk memilih elemen-elemen tertentu dari suatu html. Elemen-elemen yang dipilih kemudian dapat diubah penampilan, penempatan, dan alignment secara individu maupun secara berkelompok menggunakan class, id, ataupun langsung select elemen itu sendiri (e.g. input, paragraph, heading). Selector ini sangat berguna untuk customize User Interface atau display dari website kita. Waktu paling tepat untuk menggunakan selector adalah saat kita ingin memperbagus design dari frontend website kita karena tentunya design yang bagus tidak dapat dilakukan tanpa melakukan select pada suatu element atau komponen dari html. Lebih spesifiknya apabila ada group atau bahkan elemen individu yang ingin kita ubah penamipilannya, penempatan, atau ukurannya.
+2. tag-tag yang terdapat dalam html5 sangat banyak, berikut adalah beberapa contoh dari tag-tag yang terdapat didalam html5:
+    - <a> tag atau anchor yang digunakan untuk mencantumkan hyperlink dalam sebuat tulisan/string
+    - <body> menandai bagian mana yang termasuk body dari suatu html file
+    - <button> tag untuk membuat suatu button yang dapat di click
+    - <div> tag yang membagi bagi kode-kode yang terdapat dalam html file kita menjadi bagian-bagian tertentu yang dapat dinamakan oleh kita
+    - <h1> - <h6> tag yang merepresentasikan heading dalam suatu html file
+    - <head> tag yang tidak berada dalam body tapi mengandung informasi di bagian had suatu website
+    - <hr> tag yang membuat suatu horizontal line
+    - <img> tag yang merepresentasikan suatu file image yang akan dipasang di page website
+    - <html> tag yang mendefinisikan root dari html document
+    - <input> tag yang membuat input yang dapat berupa berbagai macam jenis di suatu html tag
+    - <link> tag yang menyambungkan dan mnjelaskan hubungan antara sebuah document html dan document luar
+    - <ul> tag untuk unordered list yang tidak menampikan urutan dari item-item yang didalamnya
+    - <ol> tag untuk ordered list yang menampilkan urutan dari item-item yang didalmya
+    - <li> tag yang mendefinisikan suatu list item untuk ol dan ul
+    - <main> seperti div namun menandakan bagian utama dari html file
+    - <meta> menyatakan susunan metadata suatu isi dokumen
+    - <p> tag yang mendefinisikan suatu paragraf yang berisikan teks
+    - <span> membagi bagian tertentu dari suatu teks yang tidak memberikan style secara default
+    - <strong> bold
+    - <style> tag untuk menyelimpkan code css dalam bagian head dari html document
+    - <table> membuat html table
+    - <td> tag cell dalam table
+    - <tr> tag row dalam table
+    - <textarea> seperti input textfield namun muat untuk multiline
+    - dan masih banyak lagi
+3. margin dan padding keduanya adalah format spacing untuk suatu elemen didalam container. Namun perbedaannya adalah elemen yang bergerak dan elemen yang terdiam apabila diberikan spacing. spacing menggunakan margin membuat space antara container dengan elemen yang didalamnya, jadi bisa ibaratnya apabila ada dua elemen didalam suatu container. Kemudian elemen 1 dari 2 elemen diberikan padding. Yang menjadi target utama perubahan posisi adalah elemen 1 karena menambah spacing antara elemen dan container. Sedangkan margin memberikan space antar elemen. Kita ambil kasus yang sebelumnya dimana terdapat 2 item. Sekarang elemen 2yang diberikan spacing berupa margin. elemen satu yang akan terdorong karena margin membuat space antara elemen dan elemen lain bukan membuat space antara elemen dan container. Keduanya mudah seklai tertukar.
+4. Keduanya adalah framework css yang membuat hidup kita lebih mudah dalam menuliskan css code. Namun terdapat perbedaan
+    - Bootstrap banyak menyediakan pre designed components yang membuat kita tidak perlu ngoding lebih banyak kode. Selain itu dengan menyediakan pre designed components framework bootstrap dapat membuat komponen-komponen yang lebih konsisten dibandingkan dengan kita menulis sendiri. Selain itu bootstrap melakukan styling berdasarkan kelas kelas yang dibuat dalam html file. Jadi bootstrap mentarget class-class yang sudah ada di html atau yang kita buat sendiri. Karena design bootstrap banyak yang sudah dibuat oleh bootstrap maka design kita akan terlihat "bootstrap"ish atau bisa dikenali sebagai design yang menggunakan framework bootstrap
+    - Tailwind lebih fleksibel design nya dibandingkan bootstrap karena tidak menyediakan pre designed components kecuali mengimport package-package dan library tailwind. Tailwind sangat mudah untuk dicustomize karena tadi tidak menyediakan pre designed components secara default dan kita bisa men define sendiri styling class. Selain define class sendiri utuk styling kita juga bisa mengoverride styling untuk design-design tertentu karena css memiliki low specifity atau tidak terlalu spesifik untuk suatu komponen saja.
+
+    Menurut saya pribadi penggunaan tailwind dan bootstrap hanya dibagi menjadi dua kasus. Apabila kita ingin membuat design dengan sangat cepat dan ringkas kita akan menggunakan bootstrap karena pre design components nya. sedangkan saat kita ingin menggunakan framework yang sangat fleksibel tapi tidak ingin menggunakan css native maka kita akan menggunakan tailwind.
+
+5. Saya mengerjakan step by step satu per satu menggunakan css native tanpa framework karena saya masih ingin mengasaha skill native css agar saat saya pindah ke framework tailwind saya akan lebih mengerti. Mohon maaf kakak yang memeriksa tugas saya karena saya belum bisa melekukan semua checkpoint fully karena dampak dari tugas matkul sebelah terima kasih ya kak. Semoga diberkati

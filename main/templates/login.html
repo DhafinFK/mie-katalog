@@ -5,48 +5,46 @@
 {% endblock meta %}
 
 {% block content %}
-<div class="login">
 
-  <h1>Login</h1>
+<main class="form-container">
+  <div class="form">
 
-  <form method="POST" action="">
-    {% csrf_token %}
-    <table>
-      <tr>
-        <td>Username: </td>
-        <td><input type="text" name="username" placeholder="Username" class="form-control">
-        </td>
-      </tr>
+    <h1>Login</h1>
+    <form class="actual-form" method="POST" action="">
+      {% csrf_token %}
+      <div class="uname">
+        <p class="desc">Username: </p>
+        <input type="text" name="username" placeholder="Username" class="form-control">
+      </div>
 
-      <tr>
-        <td>Password: </td>
-        <td>
-          <input type="password" name="password" placeholder="Username" class="form-control">
-        </td>
-      </tr>
+      <div class="pass">
+        <p class="desc">Password: </p>
+        <input type="password" name="password" placeholder="Password" class="form-control">
+      </div>
 
-      <tr>
-        <td></td>
-        <td><input class="btn_login" type="submit" value="Login"></td>
-      </tr>
-    </table>
-  </form>
+      <input class="btn-submit" type="submit" value="Login">
+    </form>
 
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+    <div class="messages">
+      {% if messages %}
+      {% for message in messages %}
+      {{ message }}<br>
+      {% endfor %}
+      {% endif %}
+    </div>
 
-  Don't have an account yet? <a href="{% url 'register' %}">Register Now</a>
-</div>
+    <div class="reg-log">
+      Don't have an account yet? <a href="{% url 'register' %}">Register Now</a>
+    </div>
 
-<div>
-  <br><br>
-  dummy accounts (username: password): <br>
-  - nothing: dummypass <br>
-  - dhafin1: dummpypass1<br>
-</div>
+  </div>
+
+  <div class="login-desc">
+    <br><br>
+    dummy accounts (username: password): <br>
+    - nothing: dummypass <br>
+    - dhafin1: dummpypass1<br>
+  </div>
+</main>
+
 {% endblock content %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a href="{% url 'mie:katalog' %}">back</a>
+
+<h1>Add New Indomie to Database</h1>
+<main class="form-container">
+  <form class="mie-actual-form" method="POST">
+    {% csrf_token %}
+    <div class="input-txt">
+      <p class="input-p">Name:</p>
+      {{ form.name }}
+    </div>
+    <div class="input-int">
+      <label class="input-label">Amount: </label>
+      {{ form.amount }}
+    </div>
+    <div class="input-txt">
+      <p class="input-label">Description: </p>
+      {{ form.description }}
+    </div>
+    <div class="input-int">
+      <label class="input-label">Price:<label>
+          {{ form.price }}
+    </div>
+    <div class="input-txt">
+      <label class="input-label">Type:</label>
+      {{ form.type }}
+    </div>
+
+    <input class="btn-submit" type="submit" value="Save">
+  </form>
+</main>
+
+
+{% endblock content %}
