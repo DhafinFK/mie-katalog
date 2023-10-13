@@ -1,90 +1,128 @@
-input {
-    width: 250px;
-    height: 20px;
+.screen {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
-p {
-    margin-top: 0;
-    margin-bottom: 0;
+.form-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Heebo;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
 }
 
-.form-container,
-.form,
-.actual-form,
-.btn-login,
-.reg-log,
-.message,
-.login-desc {
-    font-family: Heebo;
+.card-header {
+  display: flex;
+  font-size: 40px;
+  font-weight: 500;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(0, 129, 112);
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(0, 129, 112);
+  color: rgb(15, 38, 38);
+
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
-    border-color: lightgray;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 10px;
+.card-body {
+  padding: 20px;
+  width: 290px;
 }
 
 .actual-form {
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 10px;
+  width: 100%;
 }
 
-.actual-form-register {
-    height: 210px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 10px;
+.input-form {
+  display: flex;
+  flex-direction: column;
 }
 
-.actual-form-register .btn-submit {
-    width: 75px;
-    height: 26px;
-    align-self: flex-end;
+.input-form input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 22px;
+  padding-left: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(0, 129, 112);
+  border-radius: 4px;
 }
 
-.desc {
-    font-size: 14px;
+.input-form textarea {
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(0, 129, 112);
+  border-radius: 4px;
 }
 
-.btn-submit {
-    width: 50px;
-    height: 26px;
-    align-self: flex-end;
+.input-form select {
+  height: 28px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(0, 129, 112);
+  border-radius: 4px;
+}
+
+.actual-form .button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.actual-form .desc {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.button-container .btn {
+  padding: 8px;
+  color: rgb(0, 129, 112);
+  font-weight: 600;
+  font-size: 14px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(0, 129, 112);
+  background-color: rgb(15, 38, 38);
+  border-radius: 4px;
+  transition: color 0.15s border-color 0.15s background-color 0.15s;
+  cursor: pointer;
+}
+
+.button-container .btn:hover {
+  background-color: rgb(0, 129, 112);
+  color: rgb(15, 38, 38);
+}
+
+.button-container .btn:active {
+  background-color: rgb(1, 171, 148);
+  border-color: rgb(1, 171, 148);
 }
 
 .reg-log {
-    margin-top: 30px;
-    font-size: 14px;
-    align-self: flex-start;
-    margin-left: 20px;
-    margin-bottom: 30px;
+  margin-top: 20px;
 }
 
-.messages {
-    width: 250px;
-    padding-top: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    color: red;
+.reg-log a {
+  color: rgb(1, 171, 148);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s;
 }
 
-.login-desc {
-    font-size: 12px;
-    width: 300px;
+.reg-log a:hover {
+  color: rgb(1, 110, 96);
 }

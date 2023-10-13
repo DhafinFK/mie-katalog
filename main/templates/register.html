@@ -1,50 +1,45 @@
-{% extends 'base.html' %}
-
-{% block meta %}
+{% extends 'base.html' %} {% block meta %}
 <title>Register</title>
-{% endblock meta %}
+{% endblock meta %} {% block content %}
+<main class="screen">
+  <div class="form-card">
+    <div class="card-header">Register</div>
+    <div class="card-body">
+      <form class="actual-form" method="POST">
+        {% csrf_token %}
+        <div class="input-form">
+          <div class="desc">Username:</div>
+          {{ form.username }}
+        </div>
 
-{% block content %}
-<main class="form-container">
+        <div class="input-form">
+          <div class="desc">Password:</div>
+          {{ form.password1 }}
+        </div>
 
-  <div class="form">
-    <h1>Register</h1>
+        <div class="input-form">
+          <div class="desc">Confirm Password:</div>
+          {{ form.password2 }}
+        </div>
 
-    <form class="actual-form-register" method="POST">
-      {% csrf_token %}
-      <div class="uname">
-        <p class="desc">Username: </p>
-        {{ form.username }}
+        <div class="button-container">
+          <input class="btn" type="submit" value="Register" />
+        </div>
+      </form>
+
+      <!-- <div class="messages">
+        {% if messages %}
+        {% for message in messages %}
+        {{ message }}<br>
+        {% endfor %}
+        {% endif %}
+      </div> -->
+
+      <div class="reg-log">
+        Don't have an account yet? <a href="{% url 'login' %}">Login</a>
       </div>
-
-      <div class="pass">
-        <p class="desc">Password: </p>
-        {{ form.password1 }}
-      </div>
-
-      <div class="pass">
-        <p class="desc">Confirm Password: </p>
-        {{ form.password2 }}
-      </div>
-
-      <input class="btn-submit" type="submit" value="Register">
-    </form>
-
-    <div class="messages">
-      {% if messages %}
-      {% for message in messages %}
-      {{ message }}<br>
-      {% endfor %}
-      {% endif %}
-    </div>
-
-
-    <div class="reg-log">
-      Don't have an account yet? <a href="{% url 'login' %}">Login</a>
     </div>
   </div>
-
-
 </main>
 
 {% endblock content %}

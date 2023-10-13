@@ -1,63 +1,214 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-<h4 class="sub-title">Hello {{user.username}}</h4>
-<h1 class="title">- INDOMIE KATALOG -</h1>
-<h4 class="sub-title">est. 2023</h4>
 
-<a href="{% url 'logout' %}">Logout</a>
+<!-- <p>Filter berdasarkan: {{ filtered_by }}</p> -->
+
+<h4 class="sub-title1">Hello {{user.username}}</h4>
+
 <p>login terakhir: {{ last_login }}</p>
+<a href="{% url 'logout' %}">Logout</a>
 
-<div class="center-page">
-  <p class="about-us-title">
-    About Us
-  </p>
+<main class="katalog">
 
-  <p class="about-us-par">
-    Menurut chat gpt Indomie adalah salah satu merek mi instan yang sangat populer di Indonesia
-    dan mendapatkan pengakuan internasional. Mi instan ini merupakan produk yang sangat disukai
-    oleh masyarakat Indonesia dan bahkan telah memikat hati orang-orang di seluruh dunia. Apa yang
-    membuat Indomie begitu istimewa adalah rasa gurih dan tekstur mi yang kenyal, disertai dengan
-    beragam varian rasa yang memikat lidah.
-    <br> <br>
-    Namun menurut kami tidak seperti itu. Menurut kami indomie merupakan tulang punggung dari cita rasa
-    bentuk nyata dari kata-kata murah, lezat, dan mengenyangkan. Oleh karena itu kami membuat website
-    katalog ini untuk memberikat tribut kepada indomie
-  </p>
-</div>
-
-<div class="center-page">
-  <p class="about-us-title">
-    Katalog (<a href="{% url 'mie:create-mie' %}">Tambahkan Mie</a>)
-  </p>
-
-  <p>Anda menyimpan: <strong>{{ total }} Indomie dalam katalog</strong></p>
-
-
-  <form method="post" action="">
-    <p class="filter">
-      Filter by:
-    </p>
-    {% csrf_token %}
-    <select name="filter_category">
-      <option value="" disabled selected>Pilih kategori</option>
-      <option value="MG">Indomie Goreng</option>
-      <option value="MK">Indomie Kuah</option>
-      <option value="HU">Harga Tertinggi</option>
-      <option value="HL">Harga Terendah</option>
-    </select>
-    <input type="submit" value="filter">
-  </form>
-  <p>Filter berdasarkan: {{ filtered_by }}</p>
-  <div class="mie-grid">
-    {% for mie in mies %}
-    <div class="mie-element">
-      <p class="mie-name">{{ mie }}</p>
-      <p class="mie-description">{{ mie.description }}</p>
-      <p class="mie-price">Harga/bungkus: {{ mie.price }}</p>
-      <p class="mie-stock">current stock: {{ mie.amount }}</p>
-    </div>
-    {% endfor %}
+  <div class="titlei-container">
+    <h1 class="title">- INDOMIE KATALOG -</h1>
+    <h4 class="sub-title">est. 2023</h4>
   </div>
-</div>
+
+  <div class="about-us">
+    <p class="us-info">
+      Menurut chat gpt Indomie adalah salah satu merek mi instan yang sangat
+      populer di Indonesia dan mendapatkan pengakuan internasional. Mi instan
+      ini merupakan produk yang sangat disukai oleh masyarakat Indonesia dan
+      bahkan telah memikat hati orang-orang di seluruh dunia. Apa yang membuat
+      Indomie begitu istimewa adalah rasa gurih dan tekstur mi yang kenyal,
+      disertai dengan beragam varian rasa yang memikat lidah.
+      <br />
+      <br />
+      Namun menurut kami tidak seperti itu. Menurut kami indomie merupakan
+      tulang punggung dari cita rasa bentuk nyata dari kata-kata murah, lezat,
+      dan mengenyangkan. Oleh karena itu kami membuat website katalog ini untuk
+      memberikat tribut kepada indomie.
+    </p>
+  </div>
+
+  <div class="main-katalog">
+    <div class="katalog-anda">- Katalog Anda -</div>
+    <div class="mie-jumlah">
+      Anda menyimpan: <strong>{{ total }} Indomie dalam katalog </strong
+      ><span class="reg-log"
+        >(<a href="{% url 'mie:create-mie' %}">Tambahkan Mie</a>)</span
+      >
+    </div>
+    <form class="filter" method="POST" action="">
+      <p class="filter">Filter by:</p>
+      {% csrf_token %}
+      <select name="filter_category">
+        <option value="" disabled selected>Pilih kategori</option>
+        <option value="MG">Indomie Goreng</option>
+        <option value="MK">Indomie Kuah</option>
+        <option value="HU">Harga Tertinggi</option>
+        <option value="HL">Harga Terendah</option>
+      </select>
+      <div class="button-container">
+        <input class="btn" type="submit" value="Filter" />
+      </div>
+    </form>
+
+    <div class="katalog-container" id="katalog-container">
+      {% for mie in mies %}
+      <div class="mie-element">
+        <div class="mie-name">{{ mie }}</div>
+        <div class="mie-description">{{ mie.description }}</div>
+        <div class="price-stock">
+          <div class="mie-price">Harga/bungkus: {{ mie.price }}</div>
+          <div class="mie-stock">current stock: {{ mie.amount }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="randomizer">
+    Try out our new randomizer feature! Press the button and get your indomie
+    recomendation from your catalog. Or try out our addby ajax
+
+    <div class="button-container">
+      <button class="btn" id="random-btn">Click Me!</button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add mie by ajax</button>
+    </div>
+
+    <div id="recommendation-display"></div>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form" onsubmit="return false;">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="name" class="col-form-label">Name:</label>
+              <input type="text" class="form-control" id="name" name="name"></input>
+            </div>
+            <div class="mb-3">
+              <label for="amount" class="col-form-label">Amount:</label>
+              <input type="number" class="form-control" id="amount" name="amount"></input>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="col-form-label">Description:</label>
+              <textarea class="form-control" id="description" name="description"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="col-form-label">Price:</label>
+              <input type="number" class="form-control" id="price" name="price"></input>
+            </div>
+            <div class="mb-3">
+              <label for="type" class="col-form-label">Type:</label>
+              <input type="type" class="form-control" id="type" name="type"></input>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.getElementById("button_add").onclick = addProduct
+  const recommendationButton = document.getElementById("random-btn");
+  const recommendationDisplay = document.getElementById(
+    "recommendation-display"
+  );
+  recommendationButton.addEventListener("click", () => {
+    fetch("{% url 'mie:random' %}", {
+      method: "GET", // Specify the GET method
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        recommendationDisplay.innerHTML = " ";
+        const p = document.createElement("p");
+        p.textContent = data.mie;
+        console.log(p.textContent);
+        recommendationDisplay.appendChild(p);
+      })
+      .catch((error) => console.error("Error:", error));
+  });
+
+  async function getProducts() {
+    return fetch("{% url 'mie:get_mie_json' %}").then((res) => res.json());
+  }
+
+  function addProduct() {
+        fetch("{% url 'mie:mie_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+
+  async function refreshProducts() {
+    const katalogContainer = document.getElementById("katalog-container");
+    katalogContainer.innerHTML = '';
+    document.getElementById("katalog-container").innerHTML='';
+    console.log("masuk")
+    const products = await getProducts();
+
+    products.forEach((mie) => {
+      const mieElement = document.createElement("div");
+        mieElement.className = "mie-element";
+
+        const nameElement = document.createElement("div");
+        nameElement.className = "mie-name";
+        nameElement.textContent = mie.fields.name;
+
+        const descriptionElement = document.createElement("div");
+        descriptionElement.className = "mie-description";
+        descriptionElement.textContent = mie.fields.description;
+
+        const priceStockElement = document.createElement("div");
+        priceStockElement.className = "price-stock";
+
+        const priceElement = document.createElement("div");
+        priceElement.className = "mie-price";
+        priceElement.textContent = "Harga/bungkus: " + mie.fields.price;
+
+        const stockElement = document.createElement("div");
+        stockElement.className = "mie-stock";
+        stockElement.textContent = "current stock: " + mie.fields.amount;
+
+        priceStockElement.appendChild(priceElement);
+        priceStockElement.appendChild(stockElement);
+
+        mieElement.appendChild(nameElement);
+        mieElement.appendChild(descriptionElement);
+        mieElement.appendChild(priceStockElement);
+
+        katalogContainer.appendChild(mieElement);
+      // tmp.textContent = `
+      // <div class="mie-element">
+      //   <div class="mie-name">${mie.fields.name}</div>
+      //   <div class="mie-description">${mie.fields.description}</div>
+      //   <div class="price-stock">
+      //     <div class="mie-price">Harga/bungkus: ${mie.fields.price}</div>
+      //     <div class="mie-stock">current stock: ${mie.fields.amount}</div>
+      //   </div>
+      // </div>
+      //   `;
+    });
+  }
+
+  refreshProducts();
+</script>
+
 {% endblock content %}

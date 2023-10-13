@@ -1,37 +1,40 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-
-<a href="{% url 'mie:katalog' %}">back</a>
-
-<h1>Add New Indomie to Database</h1>
-<main class="form-container">
-  <form class="mie-actual-form" method="POST">
-    {% csrf_token %}
-    <div class="input-txt">
-      <p class="input-p">Name:</p>
-      {{ form.name }}
-    </div>
-    <div class="input-int">
-      <label class="input-label">Amount: </label>
-      {{ form.amount }}
-    </div>
-    <div class="input-txt">
-      <p class="input-label">Description: </p>
-      {{ form.description }}
-    </div>
-    <div class="input-int">
-      <label class="input-label">Price:<label>
+<main class="screen">
+  <div class="form-card">
+    <div class="card-header">New Mie</div>
+    <div class="card-body">
+      <form class="actual-form" method="POST">
+        {% csrf_token %}
+        <div class="input-form">
+          <label class="desc">Name:</label>
+          {{ form.name }}
+        </div>
+        <div class="input-form">
+          <label class="desc">Amount:</label>
+          {{ form.amount }}
+        </div>
+        <div class="input-form">
+          <label class="desc">Description: </label>
+          {{ form.description }}
+        </div>
+        <div class="input-form">
+          <label class="desc">Price:</label>
           {{ form.price }}
-    </div>
-    <div class="input-txt">
-      <label class="input-label">Type:</label>
-      {{ form.type }}
-    </div>
+        </div>
+        <div class="input-form">
+          <label class="desc">Type:</label>
+          {{ form.type }}
+        </div>
 
-    <input class="btn-submit" type="submit" value="Save">
-  </form>
+        <div class="button-container">
+          <a href="{% url 'mie:katalog' %}"
+          ><input class="btn" type="button" value="Cancel"/>
+          <input class="btn" type="submit" value="Save" />
+        </div>
+      </form>
+    </div>
+  </div>
 </main>
-
 
 {% endblock content %}

@@ -1,0 +1,129 @@
+{% extends 'base.html' %} {% block content %}
+<!-- <h4 class="sub-title">Hello {{user.username}}</h4>
+
+<p>login terakhir: {{ last_login }}</p> -->
+
+<!-- <p>Filter berdasarkan: {{ filtered_by }}</p> -->
+
+<a href="{% url 'logout' %}">Logout</a>
+
+<main class="katalog">
+  <div class="titlei-container">
+    <h1 class="title">- INDOMIE KATALOG -</h1>
+    <h4 class="sub-title">est. 2023</h4>
+  </div>
+
+  <div class="about-us">
+    <p class="us-info">
+      Menurut chat gpt Indomie adalah salah satu merek mi instan yang sangat
+      populer di Indonesia dan mendapatkan pengakuan internasional. Mi instan
+      ini merupakan produk yang sangat disukai oleh masyarakat Indonesia dan
+      bahkan telah memikat hati orang-orang di seluruh dunia. Apa yang membuat
+      Indomie begitu istimewa adalah rasa gurih dan tekstur mi yang kenyal,
+      disertai dengan beragam varian rasa yang memikat lidah.
+      <br />
+      <br />
+      Namun menurut kami tidak seperti itu. Menurut kami indomie merupakan
+      tulang punggung dari cita rasa bentuk nyata dari kata-kata murah, lezat,
+      dan mengenyangkan. Oleh karena itu kami membuat website katalog ini untuk
+      memberikat tribut kepada indomie.
+    </p>
+  </div>
+
+  <div class="main-katalog">
+    <div class="katalog-anda">- Katalog Anda -</div>
+    <div class="mie-jumlah">
+      Anda menyimpan: <strong>{{ total }} Indomie dalam katalog </strong
+      ><span class="reg-log"
+        >(<a href="{% url 'mie:create-mie' %}">Tambahkan Mie</a>)</span
+      >
+    </div>
+    <form class="filter" method="POST" action="">
+      <p class="filter">Filter by:</p>
+      {% csrf_token %}
+      <select name="filter_category">
+        <option value="" disabled selected>Pilih kategori</option>
+        <option value="MG">Indomie Goreng</option>
+        <option value="MK">Indomie Kuah</option>
+        <option value="HU">Harga Tertinggi</option>
+        <option value="HL">Harga Terendah</option>
+      </select>
+      <div class="button-container">
+        <input class="btn" type="submit" value="Filter" />
+      </div>
+    </form>
+
+    <div class="katalog-container" id="katalog-container">
+      {% for mie in mies %}
+      <div class="mie-element">
+        <div class="mie-name">{{ mie }}</div>
+        <div class="mie-description">{{ mie.description }}</div>
+        <div class="price-stock">
+          <div class="mie-price">Harga/bungkus: {{ mie.price }}</div>
+          <div class="mie-stock">current stock: {{ mie.amount }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="randomizer">
+    Try out our new randomizer feature! Press the button and get your indomie
+    recomendation from your catalog. Or try out our addby ajax
+
+    <div class="button-container">
+      <button class="btn" id="random-btn">Click Me!</button>
+      <button class="btn" id="addMiebutton">Add New Mie</button>
+    </div>
+
+    <div id="recommendation-display"></div>
+  </div>
+</main>
+
+<script>
+  const recommendationButton = document.getElementById("random-btn");
+  const recommendationDisplay = document.getElementById(
+    "recommendation-display"
+  );
+  recommendationButton.addEventListener("click", () => {
+    fetch("{% url 'mie:random' %}", {
+      method: "GET", // Specify the GET method
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        recommendationDisplay.innerHTML = "";
+        const p = document.createElement("p");
+        p.textContent = data.mie;
+        console.log(p.textContent);
+        recommendationDisplay.appendChild(p);
+      })
+      .catch((error) => console.error("Error:", error));
+  });
+
+  async function getProducts() {
+    return fetch("{% url 'mie:get_mie_json' %}").then((res) => res.json());
+  }
+
+  async function refreshProducts() {
+    document.getElementById("katalog_container").innerHTML = "";
+    const products = await getProducts();
+    products.forEach((mie) => {
+      const tmp = document.createElement("div");
+      tmp.textContent = `
+      <div class="mie-element">
+        <div class="mie-name">${mie.fields.name}</div>
+        <div class="mie-description">${mie.fields.description}</div>
+        <div class="price-stock">
+          <div class="mie-price">Harga/bungkus: ${mie.fields.price}</div>
+          <div class="mie-stock">current stock: ${mie.fields.amount}</div>
+        </div>
+      </div>
+        `;
+      document.getElementById("katalog_container").appendChild(tmp);
+    });
+  }
+
+  refreshProducts();
+</script>
+
+{% endblock content %}

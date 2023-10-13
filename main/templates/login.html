@@ -1,50 +1,58 @@
-{% extends 'base.html' %}
-
-{% block meta %}
+{% extends 'base.html' %} {% block meta %}
 <title>Login</title>
-{% endblock meta %}
+{% endblock meta %} {% block content %}
 
-{% block content %}
+<main class="screen">
+  <!--tadinya form-container-->
+  <div class="form-card">
+    <div class="card-header">Login</div>
+    <div class="card-body">
+      <!--tadinya form-->
+      <form class="actual-form" method="POST" action="">
+        {% csrf_token %}
+        <div class="input-form">
+          <div class="desc">Username:</div>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            class="form-control"
+          />
+        </div>
 
-<main class="form-container">
-  <div class="form">
+        <div class="input-form">
+          <div class="desc">Password:</div>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            class="form-control"
+          />
+        </div>
 
-    <h1>Login</h1>
-    <form class="actual-form" method="POST" action="">
-      {% csrf_token %}
-      <div class="uname">
-        <p class="desc">Username: </p>
-        <input type="text" name="username" placeholder="Username" class="form-control">
+        <div class="button-container">
+          <input class="btn" type="submit" value="Login" />
+        </div>
+      </form>
+
+      <!-- <div class="messages">
+        {% if messages %} {% for message in messages %} {{ message }}<br />
+        {% endfor %} {% endif %}
+      </div> -->
+
+      <div class="reg-log">
+        Don't have an account yet?
+        <a class="link" href="{% url 'register' %}">Register Now</a>
       </div>
-
-      <div class="pass">
-        <p class="desc">Password: </p>
-        <input type="password" name="password" placeholder="Password" class="form-control">
-      </div>
-
-      <input class="btn-submit" type="submit" value="Login">
-    </form>
-
-    <div class="messages">
-      {% if messages %}
-      {% for message in messages %}
-      {{ message }}<br>
-      {% endfor %}
-      {% endif %}
     </div>
-
-    <div class="reg-log">
-      Don't have an account yet? <a href="{% url 'register' %}">Register Now</a>
-    </div>
-
   </div>
 
-  <div class="login-desc">
-    <br><br>
-    dummy accounts (username: password): <br>
-    - nothing: dummypass <br>
-    - dhafin1: dummpypass1<br>
-  </div>
+  <!-- <div class="login-desc">
+    <br /><br />
+    dummy accounts (username: password): <br />
+    - nothing: dummypass <br />
+    - dhafin1: dummpypass1<br />
+  </div> -->
 </main>
 
 {% endblock content %}
