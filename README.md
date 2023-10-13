@@ -191,3 +191,9 @@ checklist item 4:
 
 alurnya:
 browser menerima event => server memproses request dari event tersebut => browser menerima hasil proses dari server secara async
+
+4. untuk method get ajax saya menggunakannya di dua bagian. bagian pertama adalah untuk mengambil data dalam bentuk json dari database untuk dioper ke refresh page karena refresh page berfungsi untuk menampilkan data yang baru ditambah. Selain itu method get juga saya tambahkan untuk fitur rekomendasi indomie untuk pengguna. cara kerjanya adalah ada interaksi ajax dengan django secara async yang mengambil mie random untuk direkomendasikan. Sedangkan method POST saya menggunakan design bawaan bootstrap untuk permasalahan modal. input dari semua modal kemudian di clear saat sudah tidak dipakai atau sudah di submit. Semua data dari modal tersebut dioper ke view khusu async ajax yang kemudian membuat instance dari indomie yang baru. setelah membuat mie baru kemudian function yang mengandung post memanggil function refresh untuk memperbarui tampilan katalog.
+
+Untuk permasalahn routing seperti biasa saja.
+
+tautan: http://dhafin-fadhlan-tutorial.pbp.cs.ui.ac.id.
