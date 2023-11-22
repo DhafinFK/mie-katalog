@@ -25,4 +25,5 @@ urlpatterns = [
     path('register/', register, name="register"),
     path('', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+    path('auth/', include('authentication.urls')),
 ]

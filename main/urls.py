@@ -11,5 +11,6 @@ urlpatterns = [
     path('json/', views.show_json, name='show_json'),
     path('json/<int:id>/', views.show_json_by_id, name='show_json_by_id'),
     path('create-mie-ajax/', views.add_mie_by_ajax, name="mie_ajax"),
-    path('get-mie/', views.get_mie_json, name="get_mie_json")
+    path('get-mie/', views.get_mie_json, name="get_mie_json"),
+    path('create-flutter/', views.create_product_flutter, name='create_product_flutter'),
 ]
